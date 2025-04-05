@@ -12,7 +12,12 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json({ extended: false }));
 
 // CORS
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3001', 'http://localhost:5173', 'https://ride-share-topaz.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 
 // ROUTES
 app.use("/api/auth", require("./routes/authRoute"));
